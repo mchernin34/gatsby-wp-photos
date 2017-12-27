@@ -34,20 +34,18 @@ const StyledLink = styled(Link)`
 `
 
 const MetaHeading = styled.h3`
-  margin-bottom: .2em
+  margin-bottom: 0.2em;
 `
 
 const MetaBio = styled.p`
   margin-bottom: 0;
 `
 
-const Header = () => {
-  const bio =
-    'Lorem Ipsum is simply dummy text that I want to appear on the screen.'
-  const username = 'username'
+const Header = props => {
+  const bio = props.bio
+  const username = props.username
   const fullname = 'Michael Chernin'
-  const src =
-    'https://en.gravatar.com/userimage/34297156/23c838b835467a2798164834b2c5cba1.jpeg'
+  const src = props.src
 
   return (
     <Container>
