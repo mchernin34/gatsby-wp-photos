@@ -2,6 +2,40 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 import Header from '../components/Header'
+import PhotoRow from '../components/PhotoRow'
+
+const photos = props.data.allWordpressPost.edges
+
+const displayPhotos = () => {
+  const photoArray = []
+  let photoRow = []
+  let count = 0
+
+  photos.map(photo => {
+    if (photo.node.featured_media) {
+      photoArray.push(photo)
+    }
+  })
+
+  return photoArray.map(photo => {
+    if (photoRow.length === 3) {
+      photoRow = []
+    }
+
+    photoRow.push(photo)
+    count++
+
+    if (photoRow.length === 3) {
+      return returnRow(photoRow, count)
+    } else if (photoArray.length - count === 0) {
+      return returnRow(photoRow, count)
+    }
+  })
+}
+
+const returnRow = (photos, count) => {
+  return <PhotoRow photos={photos} key={count} />
+}
 
 const IndexPage = props => {
   const bio = props.data.allWordpressWpMe.edges[0].node.description
@@ -12,6 +46,7 @@ const IndexPage = props => {
   return (
     <div>
       <Header bio={bio} username={username} src={avatar} />
+      {displayPhotos()}
     </div>
   )
 }
