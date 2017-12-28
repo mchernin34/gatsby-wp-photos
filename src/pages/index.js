@@ -31,5 +31,24 @@ export const pageQuery = graphql`
         }
       }
     }
+    allWordpressPost(sort: { fields: [date], order: DESC }) {
+      edges {
+        node {
+          id
+          title
+          slug
+          date(formatString: "/YYYY/MM/DD/")
+          featured_media {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 1000) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `

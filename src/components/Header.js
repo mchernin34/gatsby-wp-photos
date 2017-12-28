@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 
 import styled from 'styled-components'
 
@@ -17,7 +18,7 @@ const AvatarContainer = styled.span`
   height: 96px;
 `
 
-const AvatarImage = styled.img`
+const AvatarImage = styled(Img)`
   margin-bottom: 0;
   border-radius: 50%;
   width: 96px;
